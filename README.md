@@ -1,73 +1,147 @@
-# React + TypeScript + Vite
+# React Automation Workflow Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **visual automation workflow builder** (similar to Zapier / Make.com) built with **React + React Flow + TypeScript + Vite**.
 
-Currently, two official plugins are available:
+Users can **create, connect, configure, validate, save, edit, delete, and export** workflows visually.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Workflow Canvas (React Flow)
+- Drag & drop nodes onto the canvas
+- Visual connection of nodes with edges
+- Zoom & pan support
+- Custom node components with:
+  - Icon
+  - Title
+  - Edit button
+  - Delete button
 
-## Expanding the ESLint configuration
+### Node Types
+| Node Type | Description |
+|-----------|-------------|
+| **Start Trigger** | Entry point (only one allowed per workflow) |
+| **Condition** | Conditional logic node |
+| **Wait Timer** | Delay/timer node |
+| **Send Message** | Action to send a message |
+| **Follow User** | Action to follow a user |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Sidebar (Left Panel)
+Provides **draggable predefined nodes**:
+- Condition
+- Send Message
+- Follow User
+- Wait Timer
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Configuration Panel (Right Panel)
+- Opens when a node is selected
+- Shows fields depending on node type
+- Supports real-time validation
+- Auto-save functionality
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Workflow Rules
+
+### Allowed
+- Exactly **one Start Trigger** per workflow
+- **Linear workflows only** (max 1 incoming + 1 outgoing edge per node)
+- All nodes must be **connected** (no isolated nodes)
+
+### Not Allowed
+- Branching (multiple outgoing edges)
+- Loops / cycles
+- Multiple outgoing edges from any node
+
+> **Note:** Invalid actions trigger a toast notification.
+
+---
+
+## CRUD Operations
+
+| Operation | Description |
+|-----------|-------------|
+| **Create** | Build workflow visually on the canvas |
+| **Read** | Display list of saved workflows |
+| **Update** | Open, edit nodes/config/connections, and save |
+| **Delete** | Remove workflow (with confirmation modal) |
+
+---
+
+## Save & Export
+
+- **Validation** before saving (workflow must pass all rules)
+- **Storage**: LocalStorage or IndexedDB
+- **Export**: Download workflow as a JSON file
+
+### Sample Export JSON
+```json
+{
+  "name": "My First Automation",
+  "nodes": [],
+  "edges": []
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Technology | Version |
+|------------|---------|
+| React | 18+ |
+| React Flow | 11+ |
+| TypeScript | Recommended |
+| TailwindCSS | Recommended |
+| State Management | Zustand / Context / Jotai |
+| Build Tool | Vite |
+
+---
+
+## UI/UX Requirements
+
+- Modern, clean UI
+- Responsive layout
+- Smooth animations
+- Proper empty & error states
+
+---
+
+## Evaluation Criteria
+
+| Category | Weight |
+|----------|--------|
+| UI Quality | 20% |
+| Functionality | 25% |
+| Workflow Logic & Validation | 20% |
+| Code Structure | 15% |
+| State Management | 10% |
+| React Flow Implementation | 10% |
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js 20+
+- npm or yarn or pnpm
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
+
+---
+
+## License
+
+This project is for demonstration/assignment purposes.
