@@ -14,6 +14,7 @@ export function ConfigPanel() {
         if (selectedNode) {
             const node = nodes.find(n => n.id === selectedNode.id);
             if (node) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setFormData({ ...node.data });
             }
         }

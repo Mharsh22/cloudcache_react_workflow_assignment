@@ -22,7 +22,7 @@ const nodeItems = [
 ];
 
 export function Sidebar() {
-    const { addNode, loadWorkflow, clearWorkflow, currentWorkflow } = useWorkflow();
+    const { loadWorkflow, clearWorkflow, currentWorkflow } = useWorkflow();
     const { workflows } = useWorkflowsList();
     const { setDeleteTarget, setIsDeleteModalOpen } = useUI();
 

@@ -14,6 +14,7 @@ export function SaveWorkflowModal() {
 
     useEffect(() => {
         if (isSaveModalOpen && currentWorkflow) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setWorkflowName(currentWorkflow.name);
         } else if (isSaveModalOpen) {
             setWorkflowName('');
