@@ -124,8 +124,8 @@ Provides **draggable predefined nodes**:
 ## Getting Started
 
 ### Prerequisites
-- Node.js 20+
-- npm or yarn or pnpm
+- Node.js 18+
+- npm or yarn
 
 ### Installation
 

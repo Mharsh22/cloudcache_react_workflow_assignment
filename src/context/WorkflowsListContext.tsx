@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { SavedWorkflow } from '../types';
 import { getWorkflows, saveWorkflow as saveToStorage, deleteWorkflow as deleteFromStorage } from '../utils/storage';
 
@@ -12,16 +13,13 @@ interface WorkflowsListContextType {
 const WorkflowsListContext = createContext<WorkflowsListContextType | null>(null);
 
 export function WorkflowsListProvider({ children }: { children: ReactNode }) {
-    const [workflows, setWorkflows] = useState<SavedWorkflow[]>([]);
+    // Use lazy initialization to load workflows on mount
+    const [workflows, setWorkflows] = useState<SavedWorkflow[]>(() => getWorkflows());
 
     const refreshWorkflows = () => {
         const saved = getWorkflows();
         setWorkflows(saved);
     };
-
-    useEffect(() => {
-        refreshWorkflows();
-    }, []);
 
     const saveWorkflow = (workflow: SavedWorkflow) => {
         saveToStorage(workflow);
