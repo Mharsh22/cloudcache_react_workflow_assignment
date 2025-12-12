@@ -7,5 +7,5 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   // Base path for GitHub Pages deployment
   // Set to your repository name, e.g., '/react-task/' for https://username.github.io/react-task/
-  base: process.env.GITHUB_ACTIONS ? '/react-task/' : '/',
+  base: process.env.GITHUB_ACTIONS ? '/cloudcache_react_workflow_assignment/' : '/',
 })
